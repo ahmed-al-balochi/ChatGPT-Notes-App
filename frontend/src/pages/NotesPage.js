@@ -8,7 +8,7 @@ const NotesPage = ({match, history}) => {
   let [result, setResult] = useState("");
 
   const resultRef = useRef();
-  const API_KEY = openAIkey
+  const API_KEY = '${{shared.openAIkey}}'
 
   useEffect(() => {
     resultRef.current = result;
