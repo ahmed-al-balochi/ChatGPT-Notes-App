@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '${{shared.PRODUCTION_SECRET}}'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
 
 ALLOWED_HOSTS = ["*"]
 
@@ -140,6 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     #"https://example.com",
     #"https://sub.example.com",
-    "http://localhost:3000", # For the react server
+    #"http://localhost:3000", # For the react server
     #"http://127.0.0.1:8000",
 ]
