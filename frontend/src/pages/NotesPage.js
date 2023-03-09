@@ -26,7 +26,7 @@ const NotesPage = ({match, history}) => {
     if(noteID === 'new') return
     let response = await fetch(`/api/notes/${noteID}`)
     let data = await response.json()
-    console.log('DATA:',data)
+    //console.log('DATA:',data)
     setNote(data)
   }
 
@@ -86,9 +86,9 @@ let ChatGPT= async () => {
           let payload = JSON.parse(e.data);
           let text = payload.choices[0].delta.content;
           if (text !== undefined) {
-            console.log("Text: " + text);
+            //console.log("Text: " + text);
             resultRef.current = resultRef.current + text;
-            console.log("ResultRef.current: " + resultRef.current);
+            //console.log("ResultRef.current: " + resultRef.current);
             setResult(resultRef.current);
             note.content = resultRef.current
           }
