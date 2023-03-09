@@ -25,7 +25,7 @@ SECRET_KEY = '${{shared.PRODUCTION_SECRET}}'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-react-notes-app-production.up.railway.app', '127.0.0.1']
 
 
 # Application definition
@@ -142,5 +142,4 @@ CORS_ALLOWED_ORIGINS = [
     #"https://sub.example.com",
     #"http://localhost:3000", # For the react server
     #"http://127.0.0.1:8000",
-    ALLOWED_HOSTS = ['django-react-notes-app-production.up.railway.app', '127.0.0.1']
 ]
