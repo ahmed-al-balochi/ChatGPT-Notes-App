@@ -8,7 +8,6 @@ const NotesPage = ({match, history}) => {
   let [result, setResult] = useState("");
 
   const resultRef = useRef();
-  let API_KEY = '' 
 
   useEffect(() => {
     resultRef.current = result;
@@ -27,9 +26,6 @@ const NotesPage = ({match, history}) => {
     let response = await fetch(`/api/notes/${noteID}`)
     let data = await response.json()
     //console.log('DATA:',data)
-    let API_response = await fetch(`/api/OpenAI_API`)
-    API_KEY = await API_response.json()
-    console.log('api: ', API_KEY)
     setNote(data)
   }
 
@@ -65,6 +61,9 @@ const NotesPage = ({match, history}) => {
 
 let ChatGPT= async () => {
     let prompt = note.content
+    let API_response = await fetch(`/api/OpenAI_API`)
+    const API_KEY = await API_response.json()
+    console.log('api: ', API_KEY)
     if (prompt !== "") {
       setIsLoading(true);
       setResult("");

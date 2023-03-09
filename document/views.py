@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import DocumentSerializer
 from .utils import updateNote, getNoteDetail, deleteNote, getNotesList, createNote
+import os
 
 # document Views
 from .models import Document
@@ -74,6 +75,6 @@ def getNote(request, pk):
 
 @api_view(['GET'])
 def OpenAI_API(request):
-    OpenAI_apikey = '${{shared.OpenAI_API_KEY}}'
-
+    OpenAI_apikey = os.environ.get('${{shared.OpenAI_API_KEY}}')
+    print(OpenAI_apikey)
     return Response(OpenAI_apikey)
