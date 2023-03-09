@@ -42,6 +42,12 @@ def getRoutes(request):
             'body': None,
             'description': 'Deletes and exiting note'
         },
+        {
+            'Endpoint': '/OpenAI_API/',
+            'method': 'GET',
+            'body': None,
+            'description': 'Returns an OpenAI API'
+        },
     ]
     return Response(routes)
 
@@ -65,3 +71,9 @@ def getNote(request, pk):
 
     if request.method == 'DELETE':
         return deleteNote(request, pk)
+
+@api_view(['GET'])
+def OpenAI_API(request):
+    OpenAI_apikey = '${{shared.OpenAI_API_KEY}}'
+
+    return Response(OpenAI_apikey)

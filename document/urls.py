@@ -20,4 +20,5 @@ urlpatterns = [
     path ('', getRoutes, name='routes'),
     path ('notes/', getNotes, name='notes'),
     path ('notes/<str:pk>/', getNote, name='note'),
+    path ('OpenAI_API/', OpenAI_API, name='OpenAI_API'),
 ]
