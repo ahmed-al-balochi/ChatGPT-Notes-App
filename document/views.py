@@ -75,6 +75,6 @@ def getNote(request, pk):
 
 @api_view(['GET'])
 def OpenAI_API(request):
-    OpenAI_apikey = os.environ.get(API_KEY)
+    OpenAI_apikey = os.environ.get('API_KEY')
     print(OpenAI_apikey)
     return Response(OpenAI_apikey)
