@@ -63,7 +63,7 @@ let ChatGPT= async () => {
     let prompt = note.content
     let API_response = await fetch(`/api/OpenAI_API`)
     const API_KEY = await API_response.json()
-    console.log('api: ', API_KEY)
+    //console.log('api: ', API_KEY)
     if (prompt !== "") {
       setIsLoading(true);
       setResult("");
