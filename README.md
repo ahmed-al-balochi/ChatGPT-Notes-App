@@ -1,7 +1,7 @@
 # Django-React-Notes-App
 A simple note taking application with Django as the back-end and React as the front-end.
 
-![Project Demo](https://github.com/ahmed-al-balochi/Django-React-Notes-App/blob/main/Demo.gif = 250x)
+<a href="https://github.com/ahmed-al-balochi/Django-React-Notes-App/"><img src="Demo.gif" align="center" width="250" ></a>
 
 # Features:
 1. Amazing UI/UX.
