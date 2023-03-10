@@ -63,7 +63,7 @@ let ChatGPT= async () => {
     let prompt = note.content
     let API_response = await fetch(`/api/OpenAI_API`)
     const API_KEY = await API_response.json()
-    //console.log('api: ', API_KEY)
+    let originalNote = "ChatGPT response:\n"
     if (prompt !== "") {
       setIsLoading(true);
       setResult("");
@@ -88,11 +88,10 @@ let ChatGPT= async () => {
           let payload = JSON.parse(e.data);
           let text = payload.choices[0].delta.content;
           if (text !== undefined) {
-            //console.log("Text: " + text);
             resultRef.current = resultRef.current + text;
             //console.log("ResultRef.current: " + resultRef.current);
             setResult(resultRef.current);
-            note.content = resultRef.current
+            note.content = originalNote + resultRef.current
           }
         } else {
           source.close();
