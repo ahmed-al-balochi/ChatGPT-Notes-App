@@ -16,6 +16,10 @@ A simple note taking application with Django as the back-end and React as the fr
 2. React.JS
     - [react-router-dom](https://reactrouter.com/en/main).
     - [sse.js](https://github.com/mpetazzoni/sse.js). Used to stream data just like OpenAI ChatGPT output.
+# Live Demo
+[Link to the live demo](https://notes.tech-ahmed.com/#/)
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/FV6_4s?referralCode=ixFu1Y)
 
 # References
 Big Thanks to the people that made this possible through their tutorials.
