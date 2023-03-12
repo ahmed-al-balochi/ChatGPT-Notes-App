@@ -16,7 +16,8 @@ const NotesPage = ({match, history}) => {
 
   let noteID = match.params.id
   let [note, setNote] = useState("")
-  let [textDir, setTextDir] = useState("")
+  let [titleDir, setTitleDir] = useState("")
+  let [contentDir, setContentDir] = useState("")
 
   useEffect(() => {
     resultRef.current = result;
@@ -29,8 +30,11 @@ const NotesPage = ({match, history}) => {
     let data = await response.json()
     //console.log('DATA:',data['content'])
     const lngDetector = new LanguageDetect();
-    let text = lngDetector.detect(data['content'],1)
-    setTextDir(text[0][0])
+    let contentText = lngDetector.detect(data['content'],1)
+    setContentDir(contentText[0][0])
+    console.log(contentText[0][0])
+    let titleText = lngDetector.detect(data['title'],1)
+    setTitleDir(titleText[0][0])
     setNote(data)
   }
 
@@ -127,9 +131,16 @@ let ChatGPT= async () => {
     history.push('/')
   }
 
-  function textDirection(){
-    console.log(textDir)
-    if('arabic' === textDir){
+  function textTitleDirection(){
+    if('arabic' === titleDir){
+    return 'rtl' 
+    }else{
+      return 'ltr'
+    }
+  }
+
+  function textContentDirection(){
+    if('arabic' === contentDir){
     return 'rtl' 
     }else{
       return 'ltr'
@@ -143,7 +154,7 @@ let ChatGPT= async () => {
             <ArrowLeft onClick={handleSubmit}/>
         </h3>
         <h3>
-        <input placeholder='Note Title' onChange={(e) => {setNote({...note, 'title':e.target.value})}} defaultValue={note?.title}></input>
+        <input placeholder='Note Title' dir={textTitleDirection()} onChange={(e) => {setNote({...note, 'title':e.target.value})}} defaultValue={note?.title}></input>
         </h3>
              {noteID !== 'new' ? (
                 <button onClick={deleteNote}>Delete</button>
@@ -151,7 +162,7 @@ let ChatGPT= async () => {
                 <button onClick={handleSubmit}>Done</button>
              )}
       </div>
-        <textarea id="textarea" dir={textDirection()} placeholder='Note body...' className='textarea' onChange={(e) => {setNote({...note, 'content':e.target.value})}} value={note?.content}></textarea>
+        <textarea dir={textContentDirection()} placeholder='Note body...' className='textarea' onChange={(e) => {setNote({...note, 'content':e.target.value})}} value={note?.content}></textarea>
       <div>
           <ChatGPTIcon className="floating-button" onClick={ChatGPT}></ChatGPTIcon>
       </div>
