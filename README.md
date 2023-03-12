@@ -16,6 +16,7 @@ A simple note taking application with Django as the back-end and React as the fr
 2. React.JS
     - [react-router-dom](https://reactrouter.com/en/main).
     - [sse.js](https://github.com/mpetazzoni/sse.js). Used to stream data just like OpenAI ChatGPT output.
+    - [languagedetect](https://www.npmjs.com/package/languagedetect). Used for detecting RTL languages.
 # Live Demo
 [Link to the live demo](https://notes.tech-ahmed.com/#/)
 
