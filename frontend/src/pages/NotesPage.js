@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { SSE } from "sse";
 import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
 import { ReactComponent as ChatGPTIcon } from '../assets/chatgpt.svg'
+import { ReactComponent as TrashIcon } from '../assets/trash.svg'
 const LanguageDetect = require('languagedetect');
 
 const NotesPage = ({match, history}) => {
@@ -16,8 +17,6 @@ const NotesPage = ({match, history}) => {
 
   let noteID = match.params.id
   let [note, setNote] = useState("")
-  let [titleDir, setTitleDir] = useState("")
-  let [contentDir, setContentDir] = useState("")
 
   useEffect(() => {
     resultRef.current = result;
@@ -29,12 +28,6 @@ const NotesPage = ({match, history}) => {
     let response = await fetch(`/api/notes/${noteID}`)
     let data = await response.json()
     //console.log('DATA:',data['content'])
-    const lngDetector = new LanguageDetect();
-    let contentText = lngDetector.detect(data['content'],1)
-    setContentDir(contentText[0][0])
-    console.log(contentText[0][0])
-    let titleText = lngDetector.detect(data['title'],1)
-    setTitleDir(titleText[0][0])
     setNote(data)
   }
 
@@ -131,16 +124,12 @@ let ChatGPT= async () => {
     history.push('/')
   }
 
-  function textTitleDirection(){
-    if('arabic' === titleDir){
-    return 'rtl' 
-    }else{
-      return 'ltr'
-    }
-  }
-
-  function textContentDirection(){
-    if('arabic' === contentDir){
+  function textContentDirection(dir){
+    const lngDetector = new LanguageDetect();
+    let text = ""
+    text = lngDetector.detect(dir)
+    //console.log(text)
+    if(0 !== text.length && 'arabic' === text[0][0]){
     return 'rtl' 
     }else{
       return 'ltr'
@@ -154,15 +143,15 @@ let ChatGPT= async () => {
             <ArrowLeft onClick={handleSubmit}/>
         </h3>
         <h3>
-        <input placeholder='Note Title' dir={textTitleDirection()} onChange={(e) => {setNote({...note, 'title':e.target.value})}} defaultValue={note?.title}></input>
+        <input dir={textContentDirection(note?.title)} placeholder='Note Title' onChange={(e) => {setNote({...note, 'title':e.target.value})}} defaultValue={note?.title}></input>
         </h3>
              {noteID !== 'new' ? (
-                <button onClick={deleteNote}>Delete</button>
+              <TrashIcon className="delete-floating-button" onClick={deleteNote}></TrashIcon>
              ):(
-                <button onClick={handleSubmit}>Done</button>
+                <button onClick={handleSubmit}>Add</button>
              )}
       </div>
-        <textarea dir={textContentDirection()} placeholder='Note body...' className='textarea' onChange={(e) => {setNote({...note, 'content':e.target.value})}} value={note?.content}></textarea>
+       <textarea dir={textContentDirection(note?.content)} textarea placeholder='Note body...' className='textarea' onChange={(e) => {setNote({...note, 'content':e.target.value})}} value={note?.content}></textarea>
       <div>
           <ChatGPTIcon className="floating-button" onClick={ChatGPT}></ChatGPTIcon>
       </div>
