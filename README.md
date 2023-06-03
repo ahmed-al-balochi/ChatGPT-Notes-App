@@ -23,7 +23,7 @@ A simple note taking application with Django as the back-end and React as the fr
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/FV6_4s?referralCode=ixFu1Y)
 
 # References
-Big Thanks to the people that made this possible through their tutorials.
+Big Thanks to the people that made this possible through their tutorials
 
 - [Django&React.js video tutorial](https://www.youtube.com/watch?v=tYKRAXIio28)
 - [Django video tutorial](https://www.youtube.com/watch?v=trwXaGu-Lys)
